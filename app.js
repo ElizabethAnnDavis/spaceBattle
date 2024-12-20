@@ -74,8 +74,8 @@ class SpaceShip{
 
     gotHit(opShip){
         // reduce hull when ship is hit
-        let newHull = this.hull - opShip.firepower;
-        newHull < 0 ? this.hull = 0 : this.hull = newHull;
+        //let newHull = this.hull - opShip.firepower;
+        //this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
         
 
         // NOT THIS, i think
@@ -87,7 +87,17 @@ class SpaceShip{
         // Math.floor(Math.random() * 10) + 1;
         // - isNotAlien passed in
         //   - if 1-6, hit
-        //   - if 7 && isNotAlien, hit
+        //   - if 7 && !isAlien, hit
+        let madeHit = Math.floor(Math.random() * 10) + 1;
+        /* TEST CODE: */
+        console.log("random number: " + madeHit);
+
+        if(madeHit < 7){
+            this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
+            console.log("HIT");//}else if(madeHit = 7 && !isAlien){console.log("HIT");
+        }else{
+            console.log("MISS");
+        };
     }
     
 }
