@@ -110,6 +110,9 @@ class Defender extends SpaceShip{
 
     attack(opShip){
         // calls move() & fire()
+        if(this.hull === 0){
+            return;
+        };
         this.fire(opShip);
     }
 
@@ -127,6 +130,9 @@ class Invader extends SpaceShip{
 
     attack(opShip){
         // calls move() & fire()
+        if(this.hull === 0){
+            return;
+        };
         this.fire(opShip);
     }
 
