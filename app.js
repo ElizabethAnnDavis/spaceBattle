@@ -54,7 +54,7 @@
 
 class SpaceShip{
     constructor (hull, firepower, accuracy) {
-        //this.name = ;
+        //this.name = name;
         this.hull = hull;
         this.firepower = firepower;
         this.accuracy = accuracy;
@@ -62,11 +62,34 @@ class SpaceShip{
 
     move(){
         // moves left/right
+        // - change this x position
+        //   - controlled by left/right arrows
     }
 
-    fire(){
+    fire(opShip){
         // fires one shot at OP
+        opShip.gotHit(this);
+
     }
+
+    gotHit(opShip){
+        // reduce hull when ship is hit
+        let newHull = this.hull - opShip.firepower;
+        newHull < 0 ? this.hull = 0 : this.hull = newHull;
+        
+
+        // NOT THIS, i think
+        // if op x position is within 25px of this x position, hit
+        // - reduce op.hull by this.firepower
+
+        // actually THIS
+        // random number between 1-10, inclusive 
+        // Math.floor(Math.random() * 10) + 1;
+        // - isNotAlien passed in
+        //   - if 1-6, hit
+        //   - if 7 && isNotAlien, hit
+    }
+    
 }
 
 class Defender extends SpaceShip{
@@ -75,11 +98,12 @@ class Defender extends SpaceShip{
         this.name = 'The USS Assembly';
     }
 
-    attack(){
-        // calls move() & fire() 
+    attack(opShip){
+        // calls move() & fire()
+        this.fire(opShip);
     }
 
-    retreat(){
+    retreat(opShip){
         // calls move() to move away from OP
     }
 }
@@ -87,29 +111,81 @@ class Defender extends SpaceShip{
 class Invader extends SpaceShip{
     // need to add random number ranges for these values but hard coding for the time being
     constructor(name){
-        super(3, 2, .6);
+        super(8, 2, .6);//super(3, 2, .6);
         this.name = this.name;
     }
 
-    attack(){
-        // calls move() & fire() 
+    attack(opShip){
+        // calls move() & fire()
+        this.fire(opShip);
     }
 
     moveDown(){
         // moves down, closer to OP
+        // - change this y position
+        //   - controlled by down arrow
     }
 }
 
+// may need an InvaderFactory to genorate many alien ships 
+
+
+
 // 1.
-// create Defender                                  <-- functional
-// place on game board (ground - bottom of screen)  <-- display
+// create Defender                                             <-- functional
+const earthShip = new Defender();
+// place on game board (ground - bottom of screen)             <-- display
 
 // 2.
-// create Invader                                   <-- functional
-// place on game board (sky - top of screen)        <-- display
+// create Invader                                              <-- functional
+const alien = new Invader("Zim");
+// place on game board (sky - top of screen)                   <-- display
 
-// 3. Round Loop, while Defender || Invader have hp left
-//    - Defender fires at Invader
-//      - hit or miss
-//    - if Invader has hp left, fire at Defender
-//      - hit or miss
+/* TEST CODE: */
+console.log("before loop: " + earthShip.hull + " " + alien.hull);
+
+// 3. do Round Loop, while Defender || Invader have hp left    <-- functional
+do{
+    //    - Defender fires at Invader
+    earthShip.attack(alien);
+    //      - hit or miss
+    //alien.gotHit(earthShip);
+    //     - if Invader has hp left, fire at Defender
+    alien.attack(earthShip);
+    //       - hit or miss
+    //earthShip.gotHit(alien);
+
+    /* TEST CODE: */
+    console.log("in loop: " + earthShip.hull + " " + alien.hull);
+}while(earthShip.hull > 0 && alien.hull > 0);
+
+/* TEST CODE: */
+console.log("after loop: " + earthShip.hull + " " + alien.hull);
+
+// 4. Display win || lose
+//    - call gameOver
+
+
+
+/*
+// boolean
+let isfirstGame = true;
+
+function startGame(e){
+    // reset game
+    // game play logic
+    // someone loses, call gameOver
+}playBtn.addEventListener('click', startGame)
+
+function resetGame(){
+    // clear old game
+    // set isFirstGame = false
+    // remove playBtn
+    // place inital characters
+}
+
+function gameOver(){
+    // display win || lose
+    // display playBtn
+}
+ */
