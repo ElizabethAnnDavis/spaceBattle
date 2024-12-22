@@ -108,7 +108,7 @@ class Defender extends SpaceShip{
     constructor(){
         super(20, 5, .7, false);
         this.name = 'The USS Assembly';
-        //this.alien = false;
+        this.alien = false;
     }
 
     attack(opShip){
@@ -116,7 +116,7 @@ class Defender extends SpaceShip{
         if(this.hull === 0){
             return;
         };
-        this.fire(opShip, false);// this.alien);
+        this.fire(opShip, this.alien);
     }
 
     retreat(opShip){
@@ -129,7 +129,7 @@ class Invader extends SpaceShip{
     constructor(name){
         super(6, 2, .6, true);//super(3, 2, .6);
         this.name = this.name;
-        //this.alien = true;
+        this.alien = true;
     }
 
     attack(opShip){
@@ -137,7 +137,7 @@ class Invader extends SpaceShip{
         if(this.hull === 0){
             return;
         };
-        this.fire(opShip, true);// this.alien);
+        this.fire(opShip, this.alien);
     }
 
     moveDown(){
