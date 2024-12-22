@@ -53,11 +53,12 @@
 
 
 class SpaceShip{
-    constructor (hull, firepower, accuracy) {
+    constructor (hull, firepower, accuracy){ //, alien) {
         //this.name = name;
         this.hull = hull;
         this.firepower = firepower;
         this.accuracy = accuracy;
+        //this.alien = alien;
     }
 
     move(){
@@ -66,13 +67,13 @@ class SpaceShip{
         //   - controlled by left/right arrows
     }
 
-    fire(opShip){
+    fire(opShip, isAlien){
         // fires one shot at OP
-        opShip.gotHit(this);
+        opShip.gotHit(this, isAlien);
 
     }
 
-    gotHit(opShip){
+    gotHit(opShip, isAlien){
         // reduce hull when ship is hit
         //let newHull = this.hull - opShip.firepower;
         //this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
@@ -91,6 +92,7 @@ class SpaceShip{
         let madeHit = Math.floor(Math.random() * 10) + 1;
         /* TEST CODE: */
         console.log("random number: " + madeHit);
+        console.log("attacker is and alien: " + isAlien);
 
         if(madeHit < 7){
             this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
@@ -104,8 +106,9 @@ class SpaceShip{
 
 class Defender extends SpaceShip{
     constructor(){
-        super(20, 5, .7);
+        super(20, 5, .7, false);
         this.name = 'The USS Assembly';
+        //this.alien = false;
     }
 
     attack(opShip){
@@ -113,7 +116,7 @@ class Defender extends SpaceShip{
         if(this.hull === 0){
             return;
         };
-        this.fire(opShip);
+        this.fire(opShip, false);// this.alien);
     }
 
     retreat(opShip){
@@ -124,8 +127,9 @@ class Defender extends SpaceShip{
 class Invader extends SpaceShip{
     // need to add random number ranges for these values but hard coding for the time being
     constructor(name){
-        super(8, 2, .6);//super(3, 2, .6);
+        super(6, 2, .6, true);//super(3, 2, .6);
         this.name = this.name;
+        //this.alien = true;
     }
 
     attack(opShip){
@@ -133,7 +137,7 @@ class Invader extends SpaceShip{
         if(this.hull === 0){
             return;
         };
-        this.fire(opShip);
+        this.fire(opShip, true);// this.alien);
     }
 
     moveDown(){
