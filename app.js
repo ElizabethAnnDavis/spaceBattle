@@ -150,47 +150,6 @@ class Invader extends SpaceShip{
 }
 
 
-/*
-// may need an InvaderFactory to genorate many alien ships 
-
-
-
-// 1.
-// create Defender                                             <-- functional
-const earthShip = new Defender();
-// place on game board (ground - bottom of screen)             <-- display
-
-// 2.
-// create Invader                                              <-- functional
-const alien = new Invader("Zim");
-// place on game board (sky - top of screen)                   <-- display
-
-/* TEST CODE: 
-console.log("before loop: " + earthShip.hull + " " + alien.hull);
-
-// 3. do Round Loop, while Defender || Invader have hp left    <-- functional
-do{
-    //    - Defender fires at Invader
-    earthShip.attack(alien);
-    //      - hit or miss
-    //alien.gotHit(earthShip);
-    //     - if Invader has hp left, fire at Defender
-    alien.attack(earthShip);
-    //       - hit or miss
-    //earthShip.gotHit(alien);
-
-    /* TEST CODE: 
-    console.log("in loop: " + earthShip.hull + " " + alien.hull);
-}while(earthShip.hull > 0 && alien.hull > 0);
-
-/* TEST CODE: 
-console.log("after loop: " + earthShip.hull + " " + alien.hull);
-
-// 4. Display win || lose
-//    - call gameOver
-*/
-
-
 
 // boolean
 let isFirstGame = true;
@@ -225,6 +184,7 @@ function playGame(){
     //  create Invader                                              <-- functional
     const alien = new Invader("Zim");
     // place on game board (sky - top of screen)                    <-- display
+    // may need an InvaderFactory to genorate many alien ships 
 
     // game play logic
     /* TEST CODE: */
