@@ -194,7 +194,7 @@ console.log("after loop: " + earthShip.hull + " " + alien.hull);
 
 // boolean
 let isFirstGame = true;
-let playGame = true;
+let keepPlayingGame = true;
 
 function startGame(){//e){
     // reset game
@@ -202,18 +202,55 @@ function startGame(){//e){
         /* TEST CODE: */
         console.log("FIRST RUN: " + isFirstGame);
 
-        //resetGame();
+        resetGame();
     }else{
         /* TEST CODE: */
         console.log("FIRST RUN: " + isFirstGame);
 
         isFirstGame = false;
-
     };
 
-    // game play logic
-    // someone loses, call gameOver
+    playGame();
+
 }//playBtn.addEventListener('click', startGame)
+
+function playGame(){
+    // create characters
+    // 1.
+    // create Defender                                             <-- functional
+    const earthShip = new Defender();
+    // place on game board (ground - bottom of screen)             <-- display
+    
+    // 2.
+    //  create Invader                                              <-- functional
+    const alien = new Invader("Zim");
+    // place on game board (sky - top of screen)                    <-- display
+
+    // game play logic
+    /* TEST CODE: */
+    console.log("before loop: " + earthShip.hull + " " + alien.hull);
+
+    // 3. do Round Loop, while Defender || Invader have hp left    <-- functional
+    do{
+        //    - Defender fires at Invader
+        earthShip.attack(alien);
+        //      - hit or miss
+        //alien.gotHit(earthShip);
+        //      - if Invader has hp left, fire at Defender
+        alien.attack(earthShip);
+        //       - hit or miss
+        // earthShip.gotHit(alien);
+        /* TEST CODE: */
+        console.log("in loop: " + earthShip.hull + " " + alien.hull);
+    }while(earthShip.hull > 0 && alien.hull > 0);
+
+    /* TEST CODE: */
+    console.log("after loop: " + earthShip.hull + " " + alien.hull);
+
+    // someone loses, call gameOver
+    // 4. Display win || lose
+    //     - call gameOver
+}
 
 function resetGame(){
     // clear old game
@@ -234,10 +271,10 @@ do{
         console.log("Game Loop: " + (i+1));
         startGame();
         if(i === 2){
-            playGame = false;
-        }
+            keepPlayingGame = false;
+        };
         /* TEST CODE: */
-        console.log("Play Again: " + playGame);
-    }
+        console.log("Play Again: " + keepPlayingGame);
+    };
 
-}while(playGame === true);
+}while(keepPlayingGame === true);
