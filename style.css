@@ -9,6 +9,12 @@
     margin:3em;
 }
 
+.boardRow{
+    border:solid white;
+    width:auto;
+    height:11.7%;
+}
+
 /**********************************************/
 /*          Spaceships Display                */
 /**********************************************/
