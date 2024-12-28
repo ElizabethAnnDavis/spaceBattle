@@ -1,7 +1,28 @@
+/**********************************************/
+/*            Initial Display                 */
+/**********************************************/
 .gameBoard{
     border:solid black;
     background-color:rgb(21, 20, 20);
     height:80vh;
     width:92vw;
     margin:3em;
+}
+
+/**********************************************/
+/*          Spaceships Display                */
+/**********************************************/
+.trapezoid{
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
+	height: 0;
+	width: 125px;
+}
+
+#alienShip{
+    border-top: 50px solid #ada3a3;
+}
+
+#earthShip{
+    border-bottom: 50px solid rgb(106, 106, 126);
 }

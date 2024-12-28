@@ -217,9 +217,9 @@ function startGame(){//e){
 
 function resetGame(){
     // clear old game
-    // set isFirstGame = false
     // remove playBtn
     // place inital characters
+    // set playGame = true
 }
 
 function gameOver(){
