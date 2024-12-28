@@ -96,7 +96,9 @@ class SpaceShip{
 
         if(madeHit < 7){
             this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
-            console.log("HIT");//}else if(madeHit = 7 && !isAlien){console.log("HIT");
+            console.log("HIT");
+        }else if(madeHit = 7 && !isAlien){
+            console.log("HIT - 7");
         }else{
             console.log("MISS");
         };
@@ -147,6 +149,8 @@ class Invader extends SpaceShip{
     }
 }
 
+
+/*
 // may need an InvaderFactory to genorate many alien ships 
 
 
@@ -161,7 +165,7 @@ const earthShip = new Defender();
 const alien = new Invader("Zim");
 // place on game board (sky - top of screen)                   <-- display
 
-/* TEST CODE: */
+/* TEST CODE: 
 console.log("before loop: " + earthShip.hull + " " + alien.hull);
 
 // 3. do Round Loop, while Defender || Invader have hp left    <-- functional
@@ -175,27 +179,41 @@ do{
     //       - hit or miss
     //earthShip.gotHit(alien);
 
-    /* TEST CODE: */
+    /* TEST CODE: 
     console.log("in loop: " + earthShip.hull + " " + alien.hull);
 }while(earthShip.hull > 0 && alien.hull > 0);
 
-/* TEST CODE: */
+/* TEST CODE: 
 console.log("after loop: " + earthShip.hull + " " + alien.hull);
 
 // 4. Display win || lose
 //    - call gameOver
+*/
 
 
 
-/*
 // boolean
-let isfirstGame = true;
+let isFirstGame = true;
+let playGame = true;
 
-function startGame(e){
+function startGame(){//e){
     // reset game
+    if(!isFirstGame){
+        /* TEST CODE: */
+        console.log("FIRST RUN: " + isFirstGame);
+
+        //resetGame();
+    }else{
+        /* TEST CODE: */
+        console.log("FIRST RUN: " + isFirstGame);
+
+        isFirstGame = false;
+
+    };
+
     // game play logic
     // someone loses, call gameOver
-}playBtn.addEventListener('click', startGame)
+}//playBtn.addEventListener('click', startGame)
 
 function resetGame(){
     // clear old game
@@ -208,4 +226,18 @@ function gameOver(){
     // display win || lose
     // display playBtn
 }
- */
+
+
+do{
+    for(let i = 0; i < 3; i++){
+        /* TEST CODE: */
+        console.log("Game Loop: " + (i+1));
+        startGame();
+        if(i === 2){
+            playGame = false;
+        }
+        /* TEST CODE: */
+        console.log("Play Again: " + playGame);
+    }
+
+}while(playGame === true);
