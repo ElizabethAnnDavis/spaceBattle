@@ -52,6 +52,16 @@
 
 
 
+const topOfBoard = document.getElementById('row1');
+const bottomOfBoard = document.getElementById('row8');
+
+const teamEarthShip = document.createElement('div');
+teamEarthShip.classList.add('trapezoid');
+teamEarthShip.id = 'earthShip';
+const teamSpaceShip = document.createElement('div');
+teamSpaceShip.classList.add('trapezoid');
+teamSpaceShip.id = 'alienShip';
+
 class SpaceShip{
     constructor (hull, firepower, accuracy){ //, alien) {
         //this.name = name;
@@ -179,11 +189,13 @@ function playGame(){
     // create Defender                                             <-- functional
     const earthShip = new Defender();
     // place on game board (ground - bottom of screen)             <-- display
+    bottomOfBoard.appendChild(teamEarthShip);
     
     // 2.
     //  create Invader                                              <-- functional
     const alien = new Invader("Zim");
     // place on game board (sky - top of screen)                    <-- display
+    topOfBoard.appendChild(teamSpaceShip);
     // may need an InvaderFactory to genorate many alien ships 
 
     // game play logic
@@ -228,13 +240,15 @@ function gameOver(){
 do{
     for(let i = 0; i < 3; i++){
         /* TEST CODE: */
-        console.log("Game Loop: " + (i+1));
-        startGame();
-        if(i === 2){
-            keepPlayingGame = false;
-        };
+        //console.log("Game Loop: " + (i+1));
+        //startGame();
+        //if(i === 2){
+          //  keepPlayingGame = false;
+        //};
         /* TEST CODE: */
-        console.log("Play Again: " + keepPlayingGame);
+        //console.log("Play Again: " + keepPlayingGame);
     };
+    startGame();
+    keepPlayingGame = false;
 
 }while(keepPlayingGame === true);

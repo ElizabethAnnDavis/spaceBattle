@@ -10,25 +10,30 @@
 }
 
 .boardRow{
-    border:solid white;
+    /*border:solid white;*/
+    display: flex;
+    
+    justify-content: center;
+    
     width:auto;
-    height:11.7%;
+    height:12.5%;
 }
 
 /**********************************************/
 /*          Spaceships Display                */
 /**********************************************/
 .trapezoid{
-	border-left: 25px solid transparent;
-	border-right: 25px solid transparent;
-	height: 0;
-	width: 125px;
+	border-left:25px solid transparent;
+	border-right:25px solid transparent;
+	height:0;
+	width:125px;
 }
 
 #alienShip{
-    border-top: 50px solid #ada3a3;
+    border-top:50px solid rgb(106, 106, 126);
 }
 
 #earthShip{
-    border-bottom: 50px solid rgb(106, 106, 126);
+    border-bottom:50px solid rgb(156, 156, 209);
+    margin:25px;
 }
