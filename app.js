@@ -75,6 +75,22 @@ class SpaceShip{
         // moves left/right
         // - change this x position
         //   - controlled by left/right arrows
+        /*
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowUp') {
+              // Up arrow key pressed
+              console.log('Up arrow pressed'); 
+            } else if (event.key === 'ArrowDown') {
+              // Down arrow key pressed
+              console.log('Down arrow pressed'); 
+            } else if (event.key === 'ArrowLeft') {
+              // Left arrow key pressed
+              console.log('Left arrow pressed'); 
+            } else if (event.key === 'ArrowRight') {
+              // Right arrow key pressed
+              console.log('Right arrow pressed'); 
+            }
+        });*/
     }
 
     fire(opShip, isAlien){
@@ -221,6 +237,20 @@ function playGame(){
 
     // someone loses, call gameOver
     // 4. Display win || lose
+    /* TEST CODE: */
+    console.log("before if/else if: earth " + earthShip.hull);
+    console.log("before if/else if: alien " + alien.hull);
+    if(earthShip.hull === 0){
+        // EARTH LOST
+        // remove ship from screen
+        bottomOfBoard.removeChild(teamEarthShip);
+        console.log("YOU LOSE!\nEarth has been defeated :(");
+    }else if(alien.hull === 0){
+        // THIS ALIEN LOST
+        // remove ship from screen
+        topOfBoard.removeChild(teamSpaceShip);
+        console.log(alien.name + " has been defeated");
+    };
     //     - call gameOver
 }
 
