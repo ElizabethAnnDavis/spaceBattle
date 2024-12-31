@@ -65,6 +65,13 @@ const teamSpaceShip = document.createElement('div');
 teamSpaceShip.classList.add('trapezoid');
 teamSpaceShip.id = 'alienShip';
 
+const attackBtn = document.createElement('button');
+attackBtn.innerHTML = 'FIRE!';
+const btnCont = document.querySelector('.btnCont');
+//btnCont.classList.add('btnCont');
+btnCont.appendChild(attackBtn);
+attackBtn.hidden = true;
+
 class SpaceShip{
     constructor (hull, firepower, accuracy){ //, alien) {
         //this.name = name;
@@ -268,6 +275,7 @@ function resetGame(){
     //middleOfBoard.removeChild(playBtn);
     //playBtn.style.display = 'none';
     playBtn.hidden = true;
+    attackBtn.hidden = false;
     // place inital characters
     // set playGame = true
 }
@@ -278,6 +286,7 @@ function gameOver(str){
     // display playBtn
     playBtn.innerHTML = 'PLAY AGAIN';
     playBtn.hidden = false;
+    attackBtn.hidden = true;
     //middleOfBoard.appendChild(playBtn);
 }
 

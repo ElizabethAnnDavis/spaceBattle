@@ -12,9 +12,7 @@
 .boardRow{
     /*border:solid white;*/
     display: flex;
-    
-    justify-content: center;
-    
+    justify-content: center; 
     width:auto;
     height:12.5%;
 }
