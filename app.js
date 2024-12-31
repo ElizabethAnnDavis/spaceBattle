@@ -191,6 +191,10 @@ class Invader extends SpaceShip{
 let isFirstGame = true;
 let keepPlayingGame = true;
 
+// spaceships
+const earthShip = new Defender();
+const alien = new Invader("Zim");
+
 function startGame(e){
     // reset game
     resetGame();
@@ -215,13 +219,13 @@ function playGame(){
     // create characters
     // 1.
     // create Defender                                             <-- functional
-    const earthShip = new Defender();
+    //const earthShip = new Defender();
     // place on game board (ground - bottom of screen)             <-- display
     bottomOfBoard.appendChild(teamEarthShip);
     
     // 2.
     //  create Invader                                              <-- functional
-    const alien = new Invader("Zim");
+    //const alien = new Invader("Zim");
     // place on game board (sky - top of screen)                    <-- display
     topOfBoard.appendChild(teamSpaceShip);
     // may need an InvaderFactory to genorate many alien ships 
@@ -231,7 +235,52 @@ function playGame(){
     console.log("before loop: " + earthShip.hull + " " + alien.hull);
 
     // 3. do Round Loop, while Defender || Invader have hp left    <-- functional
+    attackBtn.addEventListener('click', battle);//(earthShip, alien));
+    //do{
+        //attackBtn.addEventListener('click', battle);//(earthShip, alien));
+
+        //    - Defender fires at Invader
+        //earthShip.attack(alien);
+        //      - hit or miss
+        //alien.gotHit(earthShip);
+        //      - if Invader has hp left, fire at Defender
+        //alien.attack(earthShip);
+        //       - hit or miss
+        // earthShip.gotHit(alien);
+
+        /* TEST CODE: */
+        //console.log("in loop: " + earthShip.hull + " " + alien.hull);
+    //}while(earthShip.hull > 0 && alien.hull > 0);
+
+    /* TEST CODE: */
+    //console.log("after loop: " + earthShip.hull + " " + alien.hull);
+
+    // someone loses, call gameOver
+    // 4. Display win || lose
+    /* TEST CODE: */
+    //console.log("before if/else if: earth " + earthShip.hull);
+    //console.log("before if/else if: alien " + alien.hull);
+    //if(earthShip.hull === 0){
+        // EARTH LOST
+        // remove ship from screen
+        //bottomOfBoard.removeChild(teamEarthShip);
+        //console.log("YOU LOSE!\nEarth has been defeated :(");
+        //gameOver("YOU LOSE!\nEarth has been defeated :(");
+    //}else if(alien.hull === 0){
+        // THIS ALIEN LOST
+        // remove ship from screen
+        //topOfBoard.removeChild(teamSpaceShip);
+        //console.log("YOU WIN!\n" + alien.name + " has been defeated");
+        //gameOver("YOU WIN!\n" + alien.name + " has been defeated");
+
+    //};
+    //     - call gameOver
+}
+
+function battle(e){//earthShip, alien){
     do{
+        //attackBtn.addEventListener('click', battle);//(earthShip, alien));
+
         //    - Defender fires at Invader
         earthShip.attack(alien);
         //      - hit or miss
@@ -240,12 +289,19 @@ function playGame(){
         alien.attack(earthShip);
         //       - hit or miss
         // earthShip.gotHit(alien);
+
         /* TEST CODE: */
         console.log("in loop: " + earthShip.hull + " " + alien.hull);
     }while(earthShip.hull > 0 && alien.hull > 0);
-
     /* TEST CODE: */
-    console.log("after loop: " + earthShip.hull + " " + alien.hull);
+    console.log("in battle function: " + earthShip.hull + " " + alien.hull); 
+
+    battleOver();
+}
+
+function battleOver(){
+    /* TEST CODE: */
+    console.log("after battle function: " + earthShip.hull + " " + alien.hull);
 
     // someone loses, call gameOver
     // 4. Display win || lose
