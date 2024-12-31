@@ -1,4 +1,6 @@
 /*
+ * FIRST DRAFT
+ * 
  * Space Battle OOP Lab
  * 
  * Today, you will be using your knowledge of OOP, loops, and functions to build a rudimentary space battle game.

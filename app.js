@@ -192,7 +192,7 @@ function startGame(e){
         /* TEST CODE: */
         console.log("FIRST RUN: " + isFirstGame);
 
-        resetGame();
+        //resetGame();
     }else{
         /* TEST CODE: */
         console.log("FIRST RUN: " + isFirstGame);
@@ -249,14 +249,14 @@ function playGame(){
         // EARTH LOST
         // remove ship from screen
         bottomOfBoard.removeChild(teamEarthShip);
-        console.log("YOU LOSE!\nEarth has been defeated :(");
-        //gameOver("YOU LOSE!\nEarth has been defeated :(");
+        //console.log("YOU LOSE!\nEarth has been defeated :(");
+        gameOver("YOU LOSE!\nEarth has been defeated :(");
     }else if(alien.hull === 0){
         // THIS ALIEN LOST
         // remove ship from screen
         topOfBoard.removeChild(teamSpaceShip);
-        console.log("YOU WIN!\n" + alien.name + " has been defeated");
-        //gameOver("YOU WIN!\n" + alien.name + " has been defeated");
+        //console.log("YOU WIN!\n" + alien.name + " has been defeated");
+        gameOver("YOU WIN!\n" + alien.name + " has been defeated");
 
     };
     //     - call gameOver
@@ -265,7 +265,9 @@ function playGame(){
 function resetGame(){
     // clear old game
     // remove playBtn
-    middleOfBoard.removeChild(playBtn);
+    //middleOfBoard.removeChild(playBtn);
+    //playBtn.style.display = 'none';
+    playBtn.hidden = true;
     // place inital characters
     // set playGame = true
 }
@@ -274,6 +276,9 @@ function gameOver(str){
     // display win || lose
     console.log(str);
     // display playBtn
+    playBtn.innerHTML = 'PLAY AGAIN';
+    playBtn.hidden = false;
+    //middleOfBoard.appendChild(playBtn);
 }
 
 /*

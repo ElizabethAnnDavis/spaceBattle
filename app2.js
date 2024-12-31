@@ -1,3 +1,5 @@
+/* SECOND DRAFT */
+
 const topOfBoard = document.getElementById('row1');
 const middleOfBoard = document.getElementById('row4');
 const bottomOfBoard = document.getElementById('row8');
