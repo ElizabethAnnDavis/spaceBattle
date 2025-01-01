@@ -40,9 +40,9 @@
  * - accuracy - .7
  * 
  * The alien ships should each have the following ranged properties determined randomly:
- * - hull - between 3and 6
- * - firepower - between 2and 4
- * - accuracy - between .6and .8
+ * - hull - between 3 and 6
+ * - firepower - between 2 and 4
+ * - accuracy - between .6 and .8
  * 
  * You could be battling six alien ships each with unique values.
  * 
@@ -164,8 +164,9 @@ class Defender extends SpaceShip{
 
 class Invader extends SpaceShip{
     // need to add random number ranges for these values but hard coding for the time being
+    //    - hull -> between 3 and 6, - firepower -> between 2 and 4, - accuracy -> between .6 and .8
     constructor(name){
-        super(6, 2, .6, true);//super(3, 2, .6);
+        super((Math.floor(Math.random() * 4) + 3), (Math.floor(Math.random() * 3) + 2), (Math.round((((Math.floor(Math.random() * 3) + 6)*0.1))*10)/10), true);
         this.name = name;
         this.alien = true;
     }
@@ -194,6 +195,7 @@ let keepPlayingGame = true;
 // spaceships
 const earthShip = new Defender();
 const alien = new Invader("Zim");
+// Gir, Tak, Invader Skoodge, Sizz-Iorr, The Almighty Tallest
 
 function startGame(e){
     // reset game
@@ -232,7 +234,9 @@ function playGame(){
 
     // game play logic
     /* TEST CODE: */
-    console.log("before loop: " + earthShip.hull + " " + alien.hull);
+    console.log("before loop hull: " + earthShip.hull + " " + alien.hull);
+    console.log("before loop firepower: " + earthShip.firepower + " " + alien.firepower);
+    console.log("before loop accuracy: " + earthShip.accuracy + " " + alien.accuracy);
 
     // 3. do Round Loop, while Defender || Invader have hp left    <-- functional
     attackBtn.addEventListener('click', battle);//(earthShip, alien));
