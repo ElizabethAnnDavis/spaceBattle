@@ -194,10 +194,10 @@ let keepPlayingGame = true;
 
 // spaceships
 const earthShip = new Defender();
-const alien = new Invader('Zim');
+// const alien = new Invader('Zim');
 // Gir, Tak, Invader Skoodge, Sizz-Iorr, The Almighty Tallest
 
-let aliens = [alien, new Invader('Gir')];
+const aliens = [new Invader('Zim'), new Invader('Gir'), new Invader('Tak'), new Invader('Skoodge'), new Invader('Sizz-Iorr'), new Invader('The Almighty Tallest')];
 
 function startGame(e){
     // reset game
@@ -342,7 +342,9 @@ function resetGame(){
     // place inital characters
     // reset ships hull 
     earthShip.hull = 20;
-    aliens[1].hull = (Math.floor(Math.random() * 4) + 3);
+    for(let i = 0; i < 6; i++){
+        aliens[i].hull = (Math.floor(Math.random() * 4) + 3);
+    };
     // set playGame = true
 }
 
