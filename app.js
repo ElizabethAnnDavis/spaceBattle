@@ -129,7 +129,8 @@ class SpaceShip{
         /* TEST CODE: */
         console.log("random number: " + madeHit);
         console.log("attacker is an alien: " + isAlien);
-
+        
+        /*
         if(madeHit < 7){
             this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
             console.log("HIT");
@@ -138,6 +139,17 @@ class SpaceShip{
         }else{
             console.log("MISS");
         };
+        */
+        if(madeHit <= 7 && !isAlien){
+            this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
+            console.log("HIT");
+        }else if(madeHit <= (opShip.accuracy*10) && isAlien){
+            this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
+            console.log("HIT");
+        }else{
+            console.log("MISS");
+        };
+
     }
     
 }
