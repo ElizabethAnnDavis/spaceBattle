@@ -121,6 +121,7 @@ class SpaceShip{
 
         if(madeHit <= (opShip.accuracy*10)){
             this.hull - opShip.firepower < 0 ? this.hull = 0 : this.hull = this.hull - opShip.firepower;
+            alert(`${this.name} has been hit!\n${this.name} has lost ${opShip.firepower} hp`);
             console.log("HIT");
         }else{
             console.log("MISS");
@@ -178,6 +179,7 @@ class Invader extends SpaceShip{
 // boolean
 let isFirstGame = true;
 let keepPlayingGame = true;
+let isEarthRetreating = false;
 
 // spaceships
 const earthShip = new Defender();
@@ -215,6 +217,7 @@ function playGame(){
     // 2. create Invader   
     teamSpaceShip.innerHTML = alien.name;
     topOfBoard.appendChild(teamSpaceShip);
+    alert(`Invader ${alien.name} is waiting to attack Earth!`);
 
     // 3. wait for attack, then call battle function
     attackBtn.addEventListener('click', battle);
@@ -228,6 +231,15 @@ function nextAlien(){
     alien = thisAlien(alienCnt);
     teamSpaceShip.innerHTML = alien.name;
     topOfBoard.appendChild(teamSpaceShip);
+
+    if(alienCnt === 4 || alienCnt === 1){
+        alert(`${alien.name} is waiting to attack Earth!`);
+    }else if(alienCnt === 5){
+        alert(`${alien.name} are waiting to attack Earth!`);
+    }else{
+        alert(`Invader ${alien.name} is waiting to attack Earth!`);
+    };
+    
     attackBtn.addEventListener('click', battle);
 }
 
@@ -258,8 +270,14 @@ function battle(e){
     }else if(alien.hull === 0){
         topOfBoard.removeChild(teamSpaceShip);
         console.log("Good work!\n" + alien.name + " has been defeated");
+        let userResponse = prompt(`Good work!\n${alien.name} has been defeated!\nDo you want to retreat?`, "no");
 
-        nextAlien();
+        if(userResponse.toLowerCase() === 'yes'){
+            isEarthRetreating = true;
+            battleOver();
+        }else{
+            nextAlien();
+        };
     }
 }
 
@@ -275,18 +293,21 @@ function battleOver(){
     /* TEST CODE: */
     console.log("before if/else if: earth " + earthShip.hull);
     console.log("before if/else if: alien " + alien.hull);
-    if(earthShip.hull === 0){
+    if(earthShip.hull === 0 || isEarthRetreating){
         // EARTH LOST
         // remove ship from screen
         bottomOfBoard.removeChild(teamEarthShip);
-        //console.log("YOU LOSE!\nEarth has been defeated :(");
-        gameOver("YOU LOSE!\nEarth has been defeated :(");
+        
+        if(isEarthRetreating){
+            gameOver("You retreated so Earth was defeated :(");
+        }else{
+            gameOver("YOU LOSE!\nEarth has been defeated :(");
+        };   
     }else if(alien.hull === 0){
         // THIS ALIEN LOST
         // remove ship from screen
         topOfBoard.removeChild(teamSpaceShip);
-        //console.log("YOU WIN!\n" + alien.name + " has been defeated");
-        gameOver("YOU WIN!\n" + alien.name + " has been defeated");
+        gameOver("YOU WIN!\n" + alien.name + " have been defeated");
 
     };
 }
@@ -304,6 +325,7 @@ function resetGame(){
         aliens[i].hull = (Math.floor(Math.random() * 4) + 3);
     };
     alienCnt = 0;
+    isEarthRetreating = false;
 }
 
 function gameOver(str){
@@ -311,6 +333,7 @@ function gameOver(str){
     console.log("in gameOver function: " + earthShip.name + " " + alien.name);
     // display win || lose
     console.log(str);
+    alert(str);
     playBtn.innerHTML = 'PLAY AGAIN';
     playBtn.hidden = false;
     attackBtn.hidden = true;
